@@ -1,3 +1,10 @@
+#  Dependency
+1. Axios
+2. React-router-dom
+3. Redux-toolkit
+4. Material-ui
+5. js-cookies
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

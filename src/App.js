@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import LoginPage from "./pages/loginpage";
+import HomePage from "./pages/homepage";
+import { Provider } from "react-redux";
+import { store } from "./app/store.js";
+import RegisterPage from "./pages/registerPage.js";
+import Cookies from "js-cookie";
 
 function App() {
+  const isAuthenticated = !!Cookies.get("user_token");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <LoginPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
