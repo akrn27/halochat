@@ -7,13 +7,14 @@ import RegisterPage from "./pages/registerPage.js";
 import Cookies from "js-cookie";
 
 function App() {
-  const isAuthenticated = !!Cookies.get("user_token");
+  // const isAuthenticated = !!Cookies.get("user_token");
 
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <LoginPage />} />
+          {/* <Route path="/" element={isAuthenticated ? <Navigate to="/home" /> : <LoginPage />} /> */}
+          <Route path="/" element={<LoginPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Routes>
