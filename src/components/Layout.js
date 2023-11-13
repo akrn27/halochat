@@ -139,7 +139,7 @@ export default function Layout({ children }) {
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
+        <AppBar position="absolute" open={open} sx={{backgroundColor: '#435334'}}>
           <Toolbar
             sx={{
               pr: "24px", // keep right padding when drawer closed
@@ -178,6 +178,7 @@ export default function Layout({ children }) {
               alignItems: "center",
               justifyContent: "space-between",
               px: [1],
+              backgroundColor: '#CEDEBD'
             }}
           >
             <Typography variant="h6" sx={{ fontWeight: "700" }}>
@@ -188,7 +189,7 @@ export default function Layout({ children }) {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List component="nav">
+          <List component="nav" sx={{backgroundColor: '#ECF7E0', height: '100%'}}>
             <Button
               sx={{
                 display: "flex",
@@ -228,6 +229,7 @@ export default function Layout({ children }) {
             flexGrow: 1,
             height: "100vh",
             overflow: "auto",
+            backgroundColor: '#FAF1E4'
           }}
         >
           <Toolbar />
