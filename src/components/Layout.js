@@ -139,7 +139,7 @@ export default function Layout({ children }) {
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open} sx={{backgroundColor: '#435334'}}>
+        <AppBar position="absolute" open={open} sx={{backgroundColor: '#472D2D'}}>
           <Toolbar
             sx={{
               pr: "24px", // keep right padding when drawer closed
@@ -178,24 +178,24 @@ export default function Layout({ children }) {
               alignItems: "center",
               justifyContent: "space-between",
               px: [1],
-              backgroundColor: '#CEDEBD'
+              backgroundColor: '#704F4F'
             }}
           >
-            <Typography variant="h6" sx={{ fontWeight: "700" }}>
-              Halo Chat
+            <Typography variant="h6" sx={{ fontWeight: "700", color: 'white' }}>
+              HaloChat
             </Typography>
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton>
           </Toolbar>
           <Divider />
-          <List component="nav" sx={{backgroundColor: '#ECF7E0', height: '100%'}}>
+          <List component="nav" sx={{backgroundColor: '#B58080', height: '100%'}}>
             <Button
               sx={{
                 display: "flex",
                 justifyContent: "flex-start",
                 paddingLeft: "12px",
-                color: "#616161",
+                color: "#F6F2F1",
                 width: "240px",
               }}
               href="/profile"
@@ -208,7 +208,7 @@ export default function Layout({ children }) {
                 display: "flex",
                 justifyContent: "flex-start",
                 paddingLeft: "12px",
-                color: "#616161",
+                color: "#F6F2F1",
                 width: "240px",
               }}
               href="/home"
@@ -229,7 +229,7 @@ export default function Layout({ children }) {
             flexGrow: 1,
             height: "100vh",
             overflow: "auto",
-            backgroundColor: '#FAF1E4'
+            backgroundColor: '#FCF5ED'
           }}
         >
           <Toolbar />
