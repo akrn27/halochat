@@ -20,6 +20,7 @@ import { getLogout, getMe } from "../features/auth/authSlice";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function Copyright(props) {
   return (
@@ -128,7 +129,7 @@ export default function Layout({ children }) {
       };
       await dispatch(getLogout({ config }));
       Cookies.remove("user_token");
-      navigate('/')
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -188,21 +189,33 @@ export default function Layout({ children }) {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {/* {mainListItems} */}
             <Button
               sx={{
                 display: "flex",
-                padding: "10px",
-                paddingRight: "65px",
-                marginLeft: "2px",
+                justifyContent: "flex-start",
+                paddingLeft: "12px",
                 color: "#616161",
+                width: "240px",
               }}
+              href="/profile"
+            >
+              <AccountCircleIcon sx={{ marginRight: "36px" }} />
+              <Typography>Profile</Typography>
+            </Button>
+            <Button
+              sx={{
+                display: "flex",
+                justifyContent: "flex-start",
+                paddingLeft: "12px",
+                color: "#616161",
+                width: "240px",
+              }}
+              href="/home"
             >
               <DashboardIcon sx={{ marginRight: "36px" }} />
               <Typography>Dashboard</Typography>
             </Button>
             <Divider sx={{ my: 1 }} />
-            {/* {secondaryListItems} */}
           </List>
         </Drawer>
         <Box
