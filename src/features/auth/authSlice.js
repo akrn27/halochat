@@ -32,6 +32,11 @@ export const deletePostById = createAsyncThunk("postById/deletePostById", async 
     return response;
 })
 
+export const createPost = createAsyncThunk("createP/createPost", async ({description, config}) => {
+    const response = await axios.post(`https://paace-f178cafcae7b.nevacloud.io/api/post`, {description}, config)
+    return response;
+})
+
 const authAdapter = createEntityAdapter({
     selectId: (auth) => auth.id
 })
@@ -58,6 +63,9 @@ const authSlice = createSlice({
             })
             .addCase(deletePostById.fulfilled, (state, action) => {
                 authAdapter.removeOne(state, action.payload)
+            })
+            .addCase(createPost.fulfilled, (state, action) => {
+                authAdapter.addOne(state, action.payload)
             })
     }
 })
