@@ -195,13 +195,13 @@ const ProfilePage = () => {
               {filteredGetPosts.length > 0 ? (
                 <Box>
                   <Paper>
-                    <Typography>Your Posts</Typography>
+                    <Typography sx={{fontWeight: 700}}>Your Posts</Typography>
                     {filteredGetPosts &&
                       filteredGetPosts.map((post, i) => (
                         <Card sx={{ minWidth: 275 }}>
                           <CardContent>
                             <Typography
-                              sx={{ fontSize: 14 }}
+                              sx={{ fontSize: 14, fontWeight: 600 }}
                               color="text.secondary"
                               gutterBottom
                             >
@@ -211,9 +211,6 @@ const ProfilePage = () => {
                               variant="h5"
                               component="div"
                             ></Typography>
-                            <Typography color="text.secondary">
-                              {post.user.email}
-                            </Typography>
                             <Typography variant="body2">
                               {post.description}
                             </Typography>
@@ -252,8 +249,8 @@ const ProfilePage = () => {
             <Grid item xs={12} md={5}>
               <form
                 onSubmit={handleSubmit}
-                sx={{ width: "100%"}}
               >
+                <FormControl fullWidth>
                 <InputLabel htmlFor="my-input">Share your thought</InputLabel>
                 <Input
                   required
@@ -261,7 +258,6 @@ const ProfilePage = () => {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   aria-describedby="my-helper-text"
-                  sx={{width: '100%'}}
                 />
                 <Button
                   type="submit"
@@ -269,13 +265,13 @@ const ProfilePage = () => {
                   endIcon={<SendIcon />}
                   sx={{
                     marginTop: '10px',
-                    width: "100%",
                     backgroundColor: "black",
                     ":hover": { backgroundColor: "#383838" },
                   }}
                 >
                   Add Post
                 </Button>
+                </FormControl>
               </form>
             </Grid>
           </Grid>
