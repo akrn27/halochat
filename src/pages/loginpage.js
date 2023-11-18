@@ -37,32 +37,32 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function LoginPage() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
-  const auth = useSelector(authSelectors.selectAll)
+  const auth = useSelector(authSelectors.selectAll);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(postLogin({email, password}))
+        await dispatch(postLogin({ email, password }));
     } catch (error) {
-      setMsg('Email or Password are incorrect');
+      setMsg("Email or Password are incorrect");
     }
   };
 
-  useEffect(() => {
-    if (auth.length > 0 && auth[0].data.success) {
-      Cookies.set("user_token", auth[0].data.data.token, {
-        expires: new Date(auth[0].data.data.expires_at),
-        path: "/",
-      });
-      navigate("/home");
-    }
-  }, [auth]);
+    useEffect(() => {
+      if (auth.length > 0 && auth[0].data.success) {
+        Cookies.set("user_token", auth[0].data.data.token, {
+          expires: new Date(auth[0].data.data.expires_at),
+          path: "/",
+        });
+        navigate("/home");
+      }
+    }, [auth]);
 
   return (
     <ThemeProvider theme={defaultTheme}>
