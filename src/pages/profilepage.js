@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import {
+  Button,
   Card,
   CardContent,
   CircularProgress,
@@ -11,7 +12,7 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { useDispatch } from "react-redux";
-import { getAllPosts, getMe } from "../features/auth/authSlice";
+import { deletePostById, getAllPosts, getMe } from "../features/auth/authSlice";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Cookies from "js-cookie";
 
@@ -55,15 +56,33 @@ const ProfilePage = () => {
     getPosts();
   }, []);
 
+  const handleDelete = async (id) => {
+    const token = Cookies.get('user_token')
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+    await dispatch(deletePostById({id, config}))
+    getPosts()
+  }
+
   const filteredGetPosts =
     allMyPosts && allMyPosts.filter((res) => res.users_id === myposts.id);
+    // console.log(filteredGetPosts)
 
-  // console.log(allMyPosts)
 
   return (
     <Layout>
       {isLoading !== 200 ? (
-        <Box sx={{ display: "flex", justifyContent: "center", alignItems: 'center', height: '100%'}}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
           <CircularProgress size={100} loading={isLoading} />
         </Box>
       ) : (
@@ -140,7 +159,9 @@ const ProfilePage = () => {
                           marginTop: "5px",
                         }}
                       >
-                        <Typography>Posts: {filteredGetPosts.length}</Typography>
+                        <Typography>
+                          Posts: {filteredGetPosts.length}
+                        </Typography>
                       </Box>
                     </Box>
                   </Paper>
@@ -169,6 +190,14 @@ const ProfilePage = () => {
                           <Typography variant="body2">
                             {post.description}
                           </Typography>
+                          <Box sx={{display: 'flex', gap: '5px', marginTop: '8px'}}>
+                            <Button variant="contained" color="success">
+                              Edit
+                            </Button>
+                            <Button type="button" onClick={() => handleDelete(post.id)} variant="contained" color="error">
+                              Delete
+                            </Button>
+                          </Box>
                         </CardContent>
                       </Card>
                     ))}
