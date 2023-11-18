@@ -22,6 +22,11 @@ export const getLogout = createAsyncThunk("logout/getLogout", async ({config}) =
     return response;
 })
 
+export const getAllPosts = createAsyncThunk("allposts/getAllPosts", async ({config}) => {
+    const response = await axios.get(`https://paace-f178cafcae7b.nevacloud.io/api/posts?type=all`, config)
+    return response;
+})
+
 const authAdapter = createEntityAdapter({
     selectId: (auth) => auth.id
 })
@@ -42,6 +47,9 @@ const authSlice = createSlice({
             })
             .addCase(getLogout.fulfilled, (state, action) => {
                 authAdapter.removeAll(state, action.payload)
+            })
+            .addCase(getAllPosts.fulfilled, (state, action) => {
+                authAdapter.setOne(state, action.payload)
             })
     }
 })

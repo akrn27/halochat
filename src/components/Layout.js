@@ -108,8 +108,8 @@ export default function Layout({ children }) {
         },
       };
       const response = await dispatch(getMe({ config }));
-      setName(response.payload.data.data.name);
-      setEmail(response.payload.data.data.email);
+      setName(response.payload?.data.data.name);
+      setEmail(response.payload?.data.data.email);
     } catch (error) {
       console.log(error);
     }
@@ -139,7 +139,7 @@ export default function Layout({ children }) {
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open} sx={{backgroundColor: '#472D2D'}}>
+        <AppBar position="absolute" open={open} sx={{backgroundColor: '#0F0F0F'}}>
           <Toolbar
             sx={{
               pr: "24px", // keep right padding when drawer closed
@@ -178,18 +178,18 @@ export default function Layout({ children }) {
               alignItems: "center",
               justifyContent: "space-between",
               px: [1],
-              backgroundColor: '#704F4F'
+              backgroundColor: '#040D12'
             }}
           >
             <Typography variant="h6" sx={{ fontWeight: "700", color: 'white' }}>
               HaloChat
             </Typography>
-            <IconButton onClick={toggleDrawer}>
+            <IconButton onClick={toggleDrawer} sx={{color: 'white'}}>
               <ChevronLeftIcon />
             </IconButton>
           </Toolbar>
           <Divider />
-          <List component="nav" sx={{backgroundColor: '#B58080', height: '100%'}}>
+          <List component="nav" sx={{backgroundColor: '#352F44', height: '100%'}}>
             <Button
               sx={{
                 display: "flex",
@@ -229,7 +229,7 @@ export default function Layout({ children }) {
             flexGrow: 1,
             height: "100vh",
             overflow: "auto",
-            backgroundColor: '#FCF5ED'
+            backgroundColor: '#B9B4C7'
           }}
         >
           <Toolbar />
